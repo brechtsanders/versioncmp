@@ -69,7 +69,7 @@ jobs:
         curl -k -L -# -o winlibs.7z ${{ matrix.config.winlibs_url }}
         7z x -y -bd -oD:\Prog\winlibs winlibs.7z
         Remove-Item winlibs.7z
-        echo "::add-path::D:\Prog\winlibs\mingw${{ matrix.config.winlibs_bits }}\bin"
+        echo "D:\Prog\winlibs\mingw${{ matrix.config.winlibs_bits }}\bin" >> $GITHUB_PATH
     - if: matrix.config.cc == 'cl'
       uses: ilammy/msvc-dev-cmd@v1
       with:
