@@ -81,7 +81,6 @@ jobs:
       name: Build + install (make)
       run: |
         ${{ matrix.config.cc }} --version
-        set
         echo _${{ env.MAKEDIR }}_
         echo MAKEDIR=$MAKEDIR
         make -C${{ env.MAKEDIR }} install PREFIX=build_result DOXYGEN= CC=${{ matrix.config.cc }}
