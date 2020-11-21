@@ -82,7 +82,7 @@ jobs:
       run: |
         ${{ matrix.config.cc }} --version
         make -C${{ env.MAKEDIR }} install PREFIX=build_result DOXYGEN= CC=${{ matrix.config.cc }}
-        echo "::set-env name=LD_LIBRARY_PATH::$(pwd)/build_result/lib:$LD_LIBRARY_PATH"
+        echo "LD_LIBRARY_PATH=$(pwd)/build_result/lib:$LD_LIBRARY_PATH" >> $GITHUB_ENV
 #    - if: matrix.config.build_method == 'nmake'
 #      name: Build + install (nmake)
 #      shell: cmd
