@@ -70,23 +70,29 @@ jobs:
         7z x -y -bd -oD:\Prog\winlibs winlibs.7z
         Remove-Item winlibs.7z
         echo "D:\Prog\winlibs\mingw${{ matrix.config.winlibs_bits }}\bin" >> $GITHUB_PATH
+        echo "CC=gcc" >> $GITHUB_ENV
+        echo "CXX=g++" >> $GITHUB_ENV
     - if: matrix.config.cc == 'cl'
       uses: ilammy/msvc-dev-cmd@v1
       with:
         arch: ${{ matrix.config.arch }}
+    - name: Configure
+      run: |
+        echo "MAKEDIR=." >> $GITHUB_ENV
     - if: matrix.config.build_method == 'make'
       name: Build + install (make)
       run: |
+        echo GITHUB_PATH=$env:GITHUB_PATH
         ${{ matrix.config.cc }} --version
-        make install PREFIX=build_result DOXYGEN= CC=${{ matrix.config.cc }}
+        make -C$env:MAKEDIR install PREFIX=build_result DOXYGEN= CC=${{ matrix.config.cc }}
         echo "LD_LIBRARY_PATH=$(pwd)/build_result/lib:$LD_LIBRARY_PATH" >> $GITHUB_ENV
 #    - if: matrix.config.build_method == 'nmake'
 #      name: Build + install (nmake)
 #      shell: cmd
 #      run: |
-#        #cmake --build ${{ env.MAKEDIR }}
-#        #cmake --install ${{ env.MAKEDIR }}
-#        pushd ${{ env.MAKEDIR }}
+#        #cmake --build $env:MAKEDIR
+#        #cmake --install $env:MAKEDIR
+#        pushd $env:MAKEDIR
 #        nmake /NOLOGO install
 #        popd
 #    - name: Test
