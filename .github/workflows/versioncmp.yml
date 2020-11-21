@@ -76,7 +76,7 @@ jobs:
         arch: ${{ matrix.config.arch }}
     - name: Configure
       run: |
-        echo "::set-env name=MAKEDIR::."
+        echo "MAKEDIR=." >> $GITHUB_ENV
     - if: matrix.config.build_method == 'make'
       name: Build + install (make)
       run: |
