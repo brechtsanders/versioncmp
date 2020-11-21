@@ -6,4 +6,6 @@ For example `10` will come before `2`, because the text comparison works from le
 When using version strings (e.g. `2.10.5`) the comparison function should detect whole numbers and compare those numerically.
 The non-numeric parts of the strings are still compared alphanumerically.
 
+The provided comparison functions can ba used with `qsort()`.
+
 This library has no external dependancies.
