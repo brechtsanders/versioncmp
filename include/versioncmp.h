@@ -32,7 +32,7 @@
 /*! \brief major version number */
 #define VERSIONCMP_VERSION_MAJOR 1
 /*! \brief minor version number */
-#define VERSIONCMP_VERSION_MINOR 0
+#define VERSIONCMP_VERSION_MINOR 1
 /*! \brief micro version number */
 #define VERSIONCMP_VERSION_MICRO 0
 /*! @} */
