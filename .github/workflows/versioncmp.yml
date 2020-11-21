@@ -63,15 +63,15 @@ jobs:
           }
     steps:
     - uses: actions/checkout@v1
-    
-    - name: envtest1
-      run: |
-        echo "testvar=HasBeenSet" >> $GITHUB_ENV
-    - name: envtest2
-      run: |
-        echo action_state=${{ env.testvar }}
-        echo action_state=$testvar
-        
+   
+#    - name: envtest1
+#      run: |
+#        echo "testvar=HasBeenSet" >> $GITHUB_ENV
+#    - name: envtest2
+#      run: |
+#        echo action_state=${{ env.testvar }}
+#        echo action_state=$testvar
+
     - if: contains( matrix.config.name, 'winlibs' )
       name: Install winlibs
       run: |
@@ -103,9 +103,9 @@ jobs:
 #        pushd $MAKEDIR
 #        nmake /NOLOGO install
 #        popd
-#    - name: Test
-#      run: |
-#        build_result/bin/versioncmp_test
+    - name: Test
+      run: |
+        build_result/bin/versioncmp_test
     - name: Pack
       run: |
         tar cfj ./${{ matrix.config.artifact }} --strip-components=1 build_result
