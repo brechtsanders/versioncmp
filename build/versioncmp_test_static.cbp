@@ -80,7 +80,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add option="-DBUILD_versioncmp_STATIC" />
+			<Add option="-DBUILD_VERSIONCMP_STATIC" />
 			<Add directory="../include" />
 		</Compiler>
 		<Linker>

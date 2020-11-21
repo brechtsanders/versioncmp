@@ -95,7 +95,7 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-DBUILD_versioncmp_DLL" />
+			<Add option="-DBUILD_VERSIONCMP_DLL" />
 			<Add directory="../include" />
 		</Compiler>
 		<Unit filename="../include/versioncmp.h" />
