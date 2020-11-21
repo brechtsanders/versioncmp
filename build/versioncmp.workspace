@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="versioncmp">
+		<Project filename="libversioncmp_shared.cbp" />
+		<Project filename="libversioncmp_static.cbp" />
+		<Project filename="versioncmp_test_static.cbp">
+			<Depends filename="libversioncmp_static.cbp" />
+		</Project>
+		<Project filename="versioncmp_test_shared.cbp">
+			<Depends filename="libversioncmp_shared.cbp" />
+		</Project>
+	</Workspace>
+</CodeBlocks_workspace_file>
