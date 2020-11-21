@@ -84,6 +84,7 @@ jobs:
       name: Build + install (make)
       run: |
         echo GITHUB_PATH=$env:GITHUB_PATH
+        echo GITHUB_PATH=$GITHUB_PATH
         ${{ matrix.config.cc }} --version
         make -C$env:MAKEDIR install PREFIX=build_result DOXYGEN= CC=${{ matrix.config.cc }}
         echo "LD_LIBRARY_PATH=$(pwd)/build_result/lib:$LD_LIBRARY_PATH" >> $GITHUB_ENV
