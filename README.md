@@ -1,5 +1,5 @@
 # Version string compare for C
-The versioncmp library is a C library providing string compare functions to compare strings while taking version numbers into accounts. These can be used for sorting data containing version numbers.
+The versioncmp library is a cross-platform C library providing string compare functions to compare strings while taking version numbers into accounts. These can be used for sorting data containing version numbers.
 
 When sorting strings alphabetically numbers are also sorted alphabetically.
 For example `10` will come before `2`, because the text comparison works from left to right, and `1` is smaller than `2`.
