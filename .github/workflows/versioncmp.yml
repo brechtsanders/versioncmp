@@ -31,36 +31,36 @@ jobs:
       fail-fast: false
       matrix:
         config:
-        - {
-            name: "winlibs 32-bit", artifact: "win32-winlibs.tar.bz2",
-            os: windows-latest,
-            cc: "gcc.exe", cxx: "g++.exe", winlibs_bits: "32", winlibs_url: "https://github.com/brechtsanders/winlibs_mingw/releases/download/10.2.0-11.0.0-9.0.0-r3/winlibs-i686-posix-dwarf-gcc-10.2.0-mingw-w64-8.0.0-r3.7z",
-            configure_method: "", build_method: "make"
-          }
-        - {
-            name: "winlibs 64-bit", artifact: "win64-winlibs.tar.bz2",
-            os: windows-latest,
-            cc: "gcc.exe", cxx: "g++.exe", winlibs_bits: "64", winlibs_url: "https://github.com/brechtsanders/winlibs_mingw/releases/download/10.2.0-11.0.0-9.0.0-r3/winlibs-x86_64-posix-seh-gcc-10.2.0-mingw-w64-8.0.0-r3.7z",
-            configure_method: "", build_method: "make"
-          }
-        - {
-            name: "Windows MinGW", artifact: "win64-MinGW.tar.bz2",
-            os: windows-latest,
-            cc: "x86_64-w64-mingw32-gcc.exe", cxx: "x86_64-w64-mingw32-g++.exe",
-            configure_method: "", build_method: "make"
-          }
+#        - {
+#            name: "winlibs 32-bit", artifact: "win32-winlibs.tar.bz2",
+#            os: windows-latest,
+#            cc: "gcc.exe", cxx: "g++.exe", winlibs_bits: "32", winlibs_url: "https://github.com/brechtsanders/winlibs_mingw/releases/download/10.2.0-11.0.0-9.0.0-r3/winlibs-i686-posix-dwarf-gcc-10.2.0-mingw-w64-8.0.0-r3.7z",
+#            configure_method: "", build_method: "make"
+#          }
+#        - {
+#            name: "winlibs 64-bit", artifact: "win64-winlibs.tar.bz2",
+#            os: windows-latest,
+#            cc: "gcc.exe", cxx: "g++.exe", winlibs_bits: "64", winlibs_url: "https://github.com/brechtsanders/winlibs_mingw/releases/download/10.2.0-11.0.0-9.0.0-r3/winlibs-x86_64-posix-seh-gcc-10.2.0-mingw-w64-8.0.0-r3.7z",
+#            configure_method: "", build_method: "make"
+#          }
+#        - {
+#            name: "Windows MinGW", artifact: "win64-MinGW.tar.bz2",
+#            os: windows-latest,
+#            cc: "x86_64-w64-mingw32-gcc.exe", cxx: "x86_64-w64-mingw32-g++.exe",
+#            configure_method: "", build_method: "make"
+#          }
         - {
             name: "Ubuntu GCC", artifact: "linux.tar.bz2",
             os: ubuntu-latest,
             cc: "gcc", cxx: "g++",
             configure_method: "", build_method: "make"
           }
-        - {
-            name: "macOS Clang", artifact: "macos.tar.bz2",
-            os: macos-latest,
-            cc: "clang", cxx: "clang++",
-            configure_method: "", build_method: "make"
-          }
+#        - {
+#            name: "macOS Clang", artifact: "macos.tar.bz2",
+#            os: macos-latest,
+#            cc: "clang", cxx: "clang++",
+#            configure_method: "", build_method: "make"
+#          }
     steps:
     - uses: actions/checkout@v1
     
@@ -78,7 +78,6 @@ jobs:
         curl -k -L -# -o winlibs.7z ${{ matrix.config.winlibs_url }}
         7z x -y -bd -oD:\Prog\winlibs winlibs.7z
         Remove-Item winlibs.7z
-        echo "ADD PATH: D:\Prog\winlibs\mingw${{ matrix.config.winlibs_bits }}\bin"
         echo "D:\Prog\winlibs\mingw${{ matrix.config.winlibs_bits }}\bin" >> $env:GITHUB_PATH
         echo "CC=gcc" >> $GITHUB_ENV
         echo "CXX=g++" >> $GITHUB_ENV
@@ -92,19 +91,16 @@ jobs:
     - if: matrix.config.build_method == 'make'
       name: Build + install (make)
       run: |
-        echo GITHUB_PATH=$env:GITHUB_PATH
-        echo GITHUB_PATH=$GITHUB_PATH
-        echo GITHUB_PATH=${{ env.MAKEDIR }}
         ${{ matrix.config.cc }} --version
-        make -C$env:MAKEDIR install PREFIX=build_result DOXYGEN= CC=${{ matrix.config.cc }}
+        make -C$MAKEDIR install PREFIX=build_result DOXYGEN= CC=${{ matrix.config.cc }}
         echo "LD_LIBRARY_PATH=$(pwd)/build_result/lib:$LD_LIBRARY_PATH" >> $GITHUB_ENV
 #    - if: matrix.config.build_method == 'nmake'
 #      name: Build + install (nmake)
 #      shell: cmd
 #      run: |
-#        #cmake --build $env:MAKEDIR
-#        #cmake --install $env:MAKEDIR
-#        pushd $env:MAKEDIR
+#        #cmake --build $MAKEDIR
+#        #cmake --install $MAKEDIR
+#        pushd $MAKEDIR
 #        nmake /NOLOGO install
 #        popd
 #    - name: Test
