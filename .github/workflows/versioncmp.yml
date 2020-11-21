@@ -63,6 +63,15 @@ jobs:
           }
     steps:
     - uses: actions/checkout@v1
+    
+    - name: envtest1
+      run: |
+        echo "testvar=HasBeenSet" >> $GITHUB_ENV
+    - name: envtest2
+      run: |
+        echo action_state=${{ env.testvar }}
+        echo action_state=$testvar
+        
     - if: contains( matrix.config.name, 'winlibs' )
       name: Install winlibs
       run: |
@@ -85,6 +94,7 @@ jobs:
       run: |
         echo GITHUB_PATH=$env:GITHUB_PATH
         echo GITHUB_PATH=$GITHUB_PATH
+        echo GITHUB_PATH=${{ env.MAKEDIR }}
         ${{ matrix.config.cc }} --version
         make -C$env:MAKEDIR install PREFIX=build_result DOXYGEN= CC=${{ matrix.config.cc }}
         echo "LD_LIBRARY_PATH=$(pwd)/build_result/lib:$LD_LIBRARY_PATH" >> $GITHUB_ENV
