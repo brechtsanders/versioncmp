@@ -75,6 +75,27 @@ DLL_EXPORT_VERSIONCMP const char* versioncmp_get_version_string ();
  */
 DLL_EXPORT_VERSIONCMP int versioncmp (const char* s1, const char* s2);
 
+/*! \brief reverse compare version strings
+ * \param  s1            first string to compare
+ * \param  s2            second string to compare
+ * \return positive if s1 < s2, zero s1 = s2, negative if s1 > s2
+ */
+DLL_EXPORT_VERSIONCMP int versioncmpreverse (const char* s1, const char* s2);
+
+/*! \brief case insensitive compare version strings
+ * \param  s1            first string to compare
+ * \param  s2            second string to compare
+ * \return negative if s1 < s2, zero s1 = s2, positive if s1 > s2
+ */
+DLL_EXPORT_VERSIONCMP int versioncasecmp (const char* s1, const char* s2);
+
+/*! \brief reverse case insensitive compare version strings
+ * \param  s1            first string to compare
+ * \param  s2            second string to compare
+ * \return positive if s1 < s2, zero s1 = s2, negative if s1 > s2
+ */
+DLL_EXPORT_VERSIONCMP int versioncasecmpreverse (const char* s1, const char* s2);
+
 #ifdef __cplusplus
 }
 #endif
