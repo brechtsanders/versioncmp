@@ -85,15 +85,15 @@ jobs:
       uses: ilammy/msvc-dev-cmd@v1
       with:
         arch: ${{ matrix.config.arch }}
-    - name: Configure
-      run: |
-        echo "MAKEDIR=." >> $env:GITHUB_ENV
+#    - name: Configure
+#      run: |
+#        echo "MAKEDIR=." >> $env:GITHUB_ENV
     - if: matrix.config.build_method == 'make'
       name: Build + install (make)
       run: |
         ${{ matrix.config.cc }} --version
-        make -C$MAKEDIR install PREFIX=build_result DOXYGEN= CC=${{ matrix.config.cc }}
-        echo "LD_LIBRARY_PATH=$(pwd)/build_result/lib:$LD_LIBRARY_PATH" >> $env:GITHUB_ENV
+        make install PREFIX=build_result DOXYGEN= CC=${{ matrix.config.cc }}
+        echo "LD_LIBRARY_PATH=$(pwd)/build_result/lib:$LD_LIBRARY_PATH" >> $GITHUB_ENV
 #    - if: matrix.config.build_method == 'nmake'
 #      name: Build + install (nmake)
 #      shell: cmd
