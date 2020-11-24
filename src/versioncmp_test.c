@@ -17,6 +17,15 @@ char* versionlist[] = {
   "1.0.0",
   "20.2.0",
   "10.0.0",
+  "1.2beta",
+  "1.2.src",
+  "1.2.1",
+  "1.1.src",
+  "0.1.src",
+  "2_6_2",
+  "2_6_1",
+  "0-6-1",
+  "0-6-2"
 };
 #define versionlistsize (sizeof(versionlist) / sizeof(*versionlist))
 

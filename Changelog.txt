@@ -1,5 +1,10 @@
 1.1.0
 
+2020-11-24  Brecht Sanders  https://github.com/brechtsanders/
+
+  * fixed algorithm to give priority to dots
+  * fixed algorithm to not treat hyphen as minus sign
+
 2020-11-21  Brecht Sanders  https://github.com/brechtsanders/
 
   * added GitHub Action CI workflow
